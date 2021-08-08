@@ -1,3 +1,6 @@
+import BaseNav from "./BaseNav.vue";
+
+export type IBaseNav = InstanceType<typeof BaseNav>;
 export interface IPage {
   text: string;
   url?: string;

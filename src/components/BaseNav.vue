@@ -36,7 +36,7 @@ export default defineComponent({
 
 <template>
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">POW</span>
+    <span class="mdl-layout-title">Menu</span>
     <button
       class="
         mdl-button mdl-js-button
@@ -55,6 +55,7 @@ export default defineComponent({
         class="mdl-navigation__link"
         v-for="(item, index) of currentList"
         :key="index"
+        :class="$style['nav-item']"
         @click="onSelect(index)"
         >{{ item.text }}</a
       >
@@ -68,5 +69,9 @@ export default defineComponent({
   right: 10px;
   top: 45px;
   z-index: 2;
+}
+
+.nav-item {
+  cursor: pointer;
 }
 </style>
