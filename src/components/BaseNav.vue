@@ -38,14 +38,9 @@ export default defineComponent({
   <div class="mdl-layout__drawer">
     <span class="mdl-layout-title">Menu</span>
     <button
-      class="
-        mdl-button mdl-js-button
-        mdl-button--fab
-        mdl-js-ripple-effect
-        mdl-button--colored
-      "
+      class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored"
       :class="$style.button"
-      v-if="canGoBack"
+      v-show="canGoBack"
       @click="onBack"
     >
       <i class="material-icons">arrow_back</i>
