@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "@vue/runtime-core";
 import { IPage, PAGES } from "./BaseNav.models";
+import router from "../router/";
 
 export default defineComponent({
   name: "BaseNav",
@@ -12,6 +13,7 @@ export default defineComponent({
     const onSelect = (index: number) => {
       const nextItem = currentList.value[index];
       if (nextItem?.url) {
+        router.push({ path: nextItem.url });
         console.log(`navigate to ${nextItem.url}`);
       } else if (nextItem.children) {
         navStack.value.push(index);

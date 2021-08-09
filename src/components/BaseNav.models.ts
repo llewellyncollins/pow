@@ -31,7 +31,7 @@ export const PAGES: IPage[] = [
       },
       {
         text: "% Change Calculator",
-        url: "gynaecology-calculator",
+        url: "gynaecology-relative-change",
       },
     ],
   },
