@@ -11,7 +11,7 @@
     "lint:fix": "vue-cli-service lint --fix",
     "release": "standard-version",
     "deploy:hosting": "firebase deploy --only hosting",
-    "cz": "cz"
+    "cz": "git add . && cz"
   },
   "dependencies": {
     "core-js": "^3.6.5",
