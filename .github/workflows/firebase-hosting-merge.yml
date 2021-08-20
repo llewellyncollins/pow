@@ -18,5 +18,5 @@ jobs:
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_POW_DEV_2082B }}"
-          channelId: live
+          channelId: next
           projectId: pow-dev-2082b
