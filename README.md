@@ -1,4 +1,5 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![Deploy to Firebase Hosting on merge](https://github.com/llewellyncollins/pow/actions/workflows/firebase-hosting-merge.yml/badge.svg)](https://github.com/llewellyncollins/pow/actions/workflows/firebase-hosting-merge.yml)
 
 # pow
 
