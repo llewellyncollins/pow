@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import RelativeChangeCalculator from "../components/RelativeChangeCalculator.vue";
+import RelativeChangeCalculator from "../pages/RelativeChangeCalculator.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {

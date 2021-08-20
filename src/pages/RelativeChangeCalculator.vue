@@ -27,7 +27,7 @@ export default defineComponent({
 <template>
   <h1>Relative Change</h1>
 
-  <form @submit.prevent="onSubmit" :class="$style.form">
+  <form @submit.prevent="onSubmit" :class="$style.form" data-test="form">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input
         class="mdl-textfield__input"
@@ -61,7 +61,7 @@ export default defineComponent({
     </button>
   </form>
 
-  <p v-if="changeValue !== null" :class="$style.result">
+  <p v-if="changeValue !== null" :class="$style.result" data-test="result">
     The relative change is {{ changeValue }}%
   </p>
 </template>
