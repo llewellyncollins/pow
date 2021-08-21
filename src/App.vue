@@ -1,10 +1,32 @@
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, onMounted, onUnmounted } from "@vue/runtime-core";
+import firebase from "firebase/app";
 import BaseNav from "./components/BaseNav.vue";
+import { auth } from "./firebase";
+import mutations from "./store/mutations";
+import { useStore } from "./store/useStore";
 
 export default defineComponent({
   name: "App",
   components: { BaseNav },
+  setup() {
+    const { commit } = useStore();
+    let unsubscribe: firebase.Unsubscribe;
+
+    onMounted(() => {
+      unsubscribe = auth.onAuthStateChanged((user) => {
+        if (user) {
+          commit(mutations.SAVE_UID, user.uid);
+        }
+      });
+    });
+
+    onUnmounted(() => {
+      unsubscribe();
+    });
+
+    return {};
+  },
 });
 </script>
 <template>
