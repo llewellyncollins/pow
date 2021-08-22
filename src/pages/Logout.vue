@@ -1,11 +1,12 @@
 <script lang="ts">
 import { useStore } from "@/store/useStore";
 import { defineComponent } from "@vue/runtime-core";
-import router from "../router";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Logout",
   setup() {
+    const router = useRouter();
     const { dispatch } = useStore();
 
     const logout = () => {

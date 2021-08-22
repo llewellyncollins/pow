@@ -1,11 +1,12 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "@vue/runtime-core";
 import { IPage, PAGES } from "./BaseNav.models";
-import router from "../router/";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "BaseNav",
   setup() {
+    const router = useRouter();
     const navStack = ref<number[]>([]);
     const currentList = ref<IPage[]>(PAGES);
     const canGoBack = computed(() => navStack.value.length > 0);

@@ -8,12 +8,13 @@ import {
 } from "@vue/runtime-core";
 import firebase from "firebase/app";
 import { auth as authUI } from "firebaseui";
+import { useRouter } from "vue-router";
 import { auth } from "../firebase";
-import router from "../router";
 
 export default defineComponent({
   name: "Login",
   setup() {
+    const router = useRouter();
     const ui = new authUI.AuthUI(auth);
     const { state } = useStore();
 
