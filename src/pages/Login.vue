@@ -4,7 +4,6 @@ import {
   defineComponent,
   onMounted,
   onUnmounted,
-  ref,
   watch,
 } from "@vue/runtime-core";
 import firebase from "firebase/app";
@@ -16,7 +15,6 @@ export default defineComponent({
   name: "Login",
   setup() {
     const ui = new authUI.AuthUI(auth);
-    const elemRef = ref<Element>();
     const { state } = useStore();
 
     watch(
@@ -29,7 +27,7 @@ export default defineComponent({
     );
 
     onMounted(() => {
-      ui.start(elemRef.value || "#auth-container", {
+      ui.start("#auth-container", {
         signInSuccessUrl: router.resolve("/").path,
         signInOptions: [
           {
@@ -44,15 +42,13 @@ export default defineComponent({
       ui.delete();
     });
 
-    return {
-      elemRef,
-    };
+    return {};
   },
 });
 </script>
 
 <template>
-  <div id="auth-container" ref="elemRef"></div>
+  <div id="auth-container"></div>
 </template>
 
 <style></style>

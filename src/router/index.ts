@@ -6,17 +6,17 @@ import Logout from "../pages/Logout.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/gynaecology-relative-change",
-    name: RelativeChangeCalculator.name,
+    name: "RelativeChangeCalculator",
     component: RelativeChangeCalculator,
   },
   {
     path: "/login",
-    name: Login.name,
+    name: "Login",
     component: Login,
   },
   {
     path: "/logout",
-    name: Logout.name,
+    name: "Logout",
     component: Logout,
   },
 ];
