@@ -4,6 +4,8 @@ import Login from "../pages/Login.vue";
 import Logout from "../pages/Logout.vue";
 import Create from "../pages/Create.vue";
 import List from "../pages/List.vue";
+import Tag from "../pages/Tag.vue";
+import Document from "../pages/Document.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -30,6 +32,16 @@ const routes: Array<RouteRecordRaw> = [
     path: "/list",
     name: "List",
     component: List,
+  },
+  {
+    path: "/tag/:tag",
+    name: "Tag",
+    component: Tag,
+  },
+  {
+    path: "/doc/:id",
+    name: "Document",
+    component: Document,
   },
 ];
 

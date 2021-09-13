@@ -14,8 +14,8 @@ export default defineComponent({
     const onSelect = (index: number) => {
       const nextItem = currentList.value[index];
       if (nextItem?.url) {
-        router.push({ path: nextItem.url });
-        console.log(`navigate to ${nextItem.url}`);
+        router.push({ path: `/tag/${nextItem.url}` });
+        console.log(`navigate to /tag/${nextItem.url}`);
       } else if (nextItem.children) {
         navStack.value.push(index);
         currentList.value = nextItem.children || [];
