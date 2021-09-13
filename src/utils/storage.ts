@@ -9,7 +9,7 @@ export const upload = (
   tag: string,
   title: string,
   description: string
-): Promise<string> => {
+): Promise<[string, string]> => {
   return new Promise((resolve, reject) => {
     try {
       const extention = file.name.split(".").pop();
@@ -24,9 +24,13 @@ export const upload = (
         .then(() => {
           return imageRef.getDownloadURL();
         })
-        .then((url) => resolve(url));
+        .then((url) => resolve([url, imageRef.fullPath]));
     } catch (error) {
       reject(error);
     }
   });
+};
+
+export const deleteImage = async (imagePath: string) => {
+  await storageRef.child(imagePath).delete();
 };

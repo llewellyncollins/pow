@@ -3,6 +3,7 @@ import RelativeChangeCalculator from "../pages/RelativeChangeCalculator.vue";
 import Login from "../pages/Login.vue";
 import Logout from "../pages/Logout.vue";
 import Create from "../pages/Create.vue";
+import List from "../pages/List.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/create",
     name: "Create",
     component: Create,
+  },
+  {
+    path: "/list",
+    name: "List",
+    component: List,
   },
 ];
 

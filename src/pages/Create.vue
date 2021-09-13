@@ -20,7 +20,7 @@ export default defineComponent({
           title: values.title,
           tag: values.tag,
           description: values.description,
-          file: values.image,
+          file: values.image[0],
         } as IDocument);
       } catch (e) {
         actions.setFieldError("form", "Failed to create new document");

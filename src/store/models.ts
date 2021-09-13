@@ -5,6 +5,7 @@ export interface IDocument {
   tag: string;
   id?: string;
   file?: File;
+  imagePath?: string;
 }
 
 export interface IState {

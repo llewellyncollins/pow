@@ -10,8 +10,10 @@ export default defineComponent({
   name: "App",
   components: { BaseNav },
   setup() {
-    const { commit } = useStore();
+    const { commit, dispatch } = useStore();
     let unsubscribe: firebase.Unsubscribe;
+
+    dispatch("getDocuments");
 
     onMounted(() => {
       unsubscribe = auth.onAuthStateChanged((user) => {

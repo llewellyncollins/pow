@@ -4,7 +4,7 @@ import { InjectionKey } from "vue";
 import { createStore, Store } from "vuex";
 import { IDocument, IState } from "./models";
 import mutations from "./mutations";
-import { upload } from "../utils/storage";
+import { deleteImage, upload } from "../utils/storage";
 
 export const key: InjectionKey<Store<IState>> = Symbol();
 
@@ -49,6 +49,15 @@ export const store = createStore<IState>({
         state.documents.push(document);
       }
     },
+    [mutations.DELETE_DOCUMENT](state: IState, docId: string) {
+      const documentIndex = state.documents.findIndex(
+        (doc) => doc.id === docId
+      );
+
+      if (documentIndex !== -1) {
+        state.documents.splice(documentIndex, 1);
+      }
+    },
     [mutations.SET_ERROR_MSG](state: IState, msg: string) {
       state.error = msg;
     },
@@ -74,36 +83,70 @@ export const store = createStore<IState>({
           tag: document.tag,
         });
 
-        const url = await upload(
-          document.file,
-          docRef.id,
-          document.tag,
-          document.title,
-          document.description || ""
-        );
+        try {
+          const [url, imagePath] = await upload(
+            document.file,
+            docRef.id,
+            document.tag,
+            document.title,
+            document.description || ""
+          );
 
-        await firestore.collection("documents").doc(docRef.id).update({
-          url,
-        });
+          await firestore.collection("documents").doc(docRef.id).update({
+            url,
+            imagePath,
+          });
 
-        const newDocument: IDocument = {
-          id: docRef.id,
-          tag: document.tag,
-          title: document.title,
-          description: document.description,
-          url,
-        };
+          const newDocument: IDocument = {
+            id: docRef.id,
+            tag: document.tag,
+            title: document.title,
+            description: document.description,
+            url,
+          };
 
-        commit(mutations.ADD_DOCUMENT, newDocument);
-      } catch (e) {
+          commit(mutations.ADD_DOCUMENT, newDocument);
+        } catch (error) {
+          firestore.collection("documents").doc(docRef.id).delete();
+          throw error;
+        }
+      } catch (error) {
         commit(mutations.SET_ERROR_MSG, "Unable to create document");
-        throw e;
+        throw error;
       }
     },
-    getPages({ commit }, tag: string) {
-      return new Promise((resolve) => {
-        console.log("fetch from firebase");
-      });
+    getDocuments: async ({ commit }) => {
+      try {
+        firestore
+          .collection("documents")
+          .where("url", "!=", null)
+          .onSnapshot((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const newDocument: IDocument = {
+                id: doc.id,
+                tag: data.tag,
+                title: data.title,
+                description: data.description,
+                url: data.url,
+                imagePath: data.imagePath,
+              };
+              commit(mutations.ADD_DOCUMENT, newDocument);
+            });
+          });
+      } catch (error) {
+        commit(mutations.SET_ERROR_MSG, "Unable retreive documents");
+      }
+    },
+    deleteDocument: async ({ commit }, { docId, imagePath }) => {
+      try {
+        await firestore.collection("documents").doc(docId).delete();
+        await deleteImage(imagePath);
+        commit(mutations.DELETE_DOCUMENT, docId);
+      } catch (error) {
+        commit(mutations.SET_ERROR_MSG, "Unable to delete document");
+        throw error;
+      }
     },
     signOut({ commit }) {
       auth.signOut().then(() => commit(mutations.CLEAR_UID));
