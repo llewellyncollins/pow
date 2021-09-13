@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDuDyAdvugoktRPm1pc5oNq34ZY5DAi690",
@@ -16,8 +18,11 @@ if (!firebase.apps.length) {
 }
 
 if (process.env.NODE_ENV !== "production") {
-  // firebase.firestore().useEmulator('localhost', 8080);
-  // firebase.functions().useEmulator('localhost', 5001);
+  firebase.firestore().useEmulator("localhost", 8081);
+  firebase.storage().useEmulator("localhost", 9199);
+  firebase.auth().useEmulator("http://localhost:9099");
 }
 
 export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+export const storage = firebase.storage();

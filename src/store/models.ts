@@ -1,10 +1,15 @@
-export interface IPage {
+export interface IDocument {
   title: string;
-  src: string;
+  description?: string;
+  url?: string;
   tag: string;
+  id?: string;
+  file?: File;
 }
 
 export interface IState {
   uid: string | null;
-  pages: IPage[];
+  documents: IDocument[];
+  tags: string[];
+  error: string | null;
 }

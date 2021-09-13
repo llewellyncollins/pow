@@ -11,20 +11,25 @@
     "lint:fix": "vue-cli-service lint --fix",
     "release": "standard-version",
     "deploy:hosting": "firebase deploy --only hosting",
-    "cz": "git add . && cz"
+    "cz": "git add . && cz",
+    "emulator": "firebase emulators:start"
   },
   "dependencies": {
+    "@braid/vue-formulate": "^2.5.2",
+    "@vee-validate/rules": "^4.4.7",
     "core-js": "^3.6.5",
     "es6-promise": "^4.2.8",
     "firebase": "^8.10.0",
     "firebaseui": "^5.0.0",
     "register-service-worker": "^1.7.1",
+    "vee-validate": "^4.4.9",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -49,6 +54,7 @@
     "sass-loader": "^8.0.2",
     "standard-version": "^9.3.1",
     "typescript": "~4.1.5",
+    "uuid": "^8.3.2",
     "vue-jest": "^5.0.0-0"
   },
   "gitHooks": {

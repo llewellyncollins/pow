@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import RelativeChangeCalculator from "../pages/RelativeChangeCalculator.vue";
 import Login from "../pages/Login.vue";
 import Logout from "../pages/Logout.vue";
+import Create from "../pages/Create.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -19,10 +20,15 @@ const routes: Array<RouteRecordRaw> = [
     name: "Logout",
     component: Logout,
   },
+  {
+    path: "/create",
+    name: "Create",
+    component: Create,
+  },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 
