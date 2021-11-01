@@ -5,6 +5,8 @@ export interface IPage {
   text: string;
   url?: string;
   children?: IPage[];
+  isDocument?: boolean;
+  isPage?: boolean;
 }
 
 export const PAGES: IPage[] = [
@@ -32,6 +34,7 @@ export const PAGES: IPage[] = [
       {
         text: "% Change Calculator",
         url: "gynaecology-relative-change",
+        isPage: true,
       },
     ],
   },

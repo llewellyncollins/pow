@@ -25,7 +25,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <h1>Relative Change</h1>
+  <h1 :class="$style.heading">Relative Change</h1>
 
   <form @submit.prevent="onSubmit" :class="$style.form" data-test="form">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -62,24 +62,40 @@ export default defineComponent({
   </form>
 
   <p v-if="changeValue !== null" :class="$style.result" data-test="result">
-    The relative change is {{ changeValue }}%
+    The relative change is {{ changeValue.toFixed(2) }}%
   </p>
 </template>
 
 <style lang="scss" module>
+.heading {
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
 
+  label {
+    font-size: 1.5rem;
+    color: #fff;
+  }
+
+  input {
+    padding: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
   button {
     width: 300px;
+    background-color: var(--alt-color-3) !important;
   }
 }
 
 .result {
-  font-size: 24px;
+  font-size: 2rem;
   text-align: center;
-  padding: 20px 0;
+  padding: 2.5rem 0;
 }
 </style>

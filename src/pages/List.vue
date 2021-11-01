@@ -19,7 +19,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <ul>
+  <ul :class="$style.list">
     <li v-for="document in documents" :key="document.id">
       <div>{{ document.title }}</div>
       <div><a :href="document.url">View</a></div>
@@ -29,3 +29,9 @@ export default defineComponent({
     </li>
   </ul>
 </template>
+
+<style lang="scss" module>
+.list {
+  list-style: none;
+}
+</style>
